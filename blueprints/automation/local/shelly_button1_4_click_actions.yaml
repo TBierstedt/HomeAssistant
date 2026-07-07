@@ -1,0 +1,82 @@
+blueprint:
+  name: Shelly Button1 – 4 Klick-Aktionen
+  description: >
+    Reagiert auf 4 Klick-Arten (einfach, doppelt, dreifach, lang) eines
+    Shelly Button 1 (WiFi, Gen1) und führt je Klick-Art eine frei wählbare
+    Aktions-Sequenz aus. Gültig für jedes Gerät vom Typ "Shelly Button1".
+  domain: automation
+  input:
+    button_device:
+      name: Shelly Button 1 Gerät
+      description: Das Shelly Button 1 Gerät, auf dessen Klicks reagiert werden soll.
+      selector:
+        device:
+          filter:
+            - integration: shelly
+              model: Shelly Button1
+    single_click_actions:
+      name: Aktion bei einfachem Klick
+      description: Wird bei einem einzelnen kurzen Tastendruck ausgeführt.
+      default: []
+      selector:
+        action: {}
+    double_click_actions:
+      name: Aktion bei Doppelklick
+      description: Wird bei zwei kurzen Tastendrücken hintereinander ausgeführt.
+      default: []
+      selector:
+        action: {}
+    triple_click_actions:
+      name: Aktion bei Dreifachklick
+      description: Wird bei drei kurzen Tastendrücken hintereinander ausgeführt.
+      default: []
+      selector:
+        action: {}
+    long_click_actions:
+      name: Aktion bei langem Druck
+      description: Wird beim gedrückt Halten der Taste ausgeführt.
+      default: []
+      selector:
+        action: {}
+
+mode: single
+
+variables:
+  target_device_id: !input button_device
+
+triggers:
+  - trigger: event
+    event_type: shelly.click
+    note: >
+      Feuert bei jedem Klick-Event von allen Shelly-Geräten im Haus. Die
+      Eingrenzung auf das gewählte Gerät passiert in der Bedingung unten,
+      da HA für dieses Event keinen nativen Geräte-Filter bietet.
+
+conditions:
+  - alias: "Filter: nur das gewählte Shelly-Gerät"
+    condition: template
+    value_template: "{{ trigger.event.data.device_id == target_device_id }}"
+
+actions:
+  - alias: "Klick-Art auswerten (single/double/triple/long)"
+    choose:
+      - alias: "Einfacher Klick (single)"
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.click_type == 'single' }}"
+        sequence: !input single_click_actions
+      - alias: "Doppelklick (double)"
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.click_type == 'double' }}"
+        sequence: !input double_click_actions
+      - alias: "Dreifachklick (triple)"
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.click_type == 'triple' }}"
+        sequence: !input triple_click_actions
+      - alias: "Langer Druck (long)"
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.click_type == 'long' }}"
+        sequence: !input long_click_actions
