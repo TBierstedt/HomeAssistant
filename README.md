@@ -1,46 +1,28 @@
-# 🏠 Home Assistant Blueprints
+# Home Assistant Blueprints
 
-Eine Sammlung eigener Home Assistant Blueprints für Automatisierungen. Jede Blueprint liegt in einem eigenen Unterordner und lässt sich per One-Click-Import direkt in Home Assistant laden.
+Hier sammle ich Blueprints für meine eigene Home-Assistant-Instanz. Jede Blueprint bekommt einen eigenen Unterordner unter `blueprints/automation/`, damit Datei und (falls vorhanden) Doku zusammenbleiben.
 
-## 📋 Verfügbare Blueprints
+## Übersicht
 
-### 🔘 Shelly Button1 – 4 Klick-Aktionen
+| Blueprint | Wofür | Import |
+|---|---|---|
+| [Shelly Button1 – 4 Klick-Aktionen](blueprints/automation/shelly-button1-4-click-actions/shelly-button1-4-click-actions.yaml) | Löst je nach Klick-Art (einfach / doppelt / dreifach / lang) eines Shelly Button 1 (Gen1, WiFi) eine frei konfigurierbare Aktions-Sequenz aus | [![Import in Home Assistant](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fraw.githubusercontent.com%2FTBierstedt%2FHomeAssistant%2Fclaude%2Fhomeassistant-blueprint-install-phycpv%2Fblueprints%2Fautomation%2Fshelly-button1-4-click-actions%2Fshelly-button1-4-click-actions.yaml) |
 
-Reagiert auf 4 Klick-Arten (einfach, doppelt, dreifach, lang) eines Shelly Button 1 (WiFi, Gen1) und führt je Klick-Art eine frei wählbare Aktions-Sequenz aus.
+Hinweis: Solange dieses Repo noch keinen `main`-Branch hat, zeigt der Import-Button auf den Branch `claude/homeassistant-blueprint-install-phycpv`. Nach dem Merge muss die `blueprint_url` in der Tabelle oben auf `main` umgestellt werden, sonst läuft der Link ins Leere.
 
-[![Öffne deine Home Assistant Instanz und zeige den Blueprint-Import-Dialog mit vorausgefülltem Blueprint.](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fraw.githubusercontent.com%2FTBierstedt%2FHomeAssistant%2Fclaude%2Fhomeassistant-blueprint-install-phycpv%2Fblueprints%2Fautomation%2Fshelly-button1-4-click-actions%2Fshelly-button1-4-click-actions.yaml)
+## Installation
 
-- **📁 Datei:** [`shelly-button1-4-click-actions.yaml`](blueprints/automation/shelly-button1-4-click-actions/shelly-button1-4-click-actions.yaml)
+Am einfachsten über den Import-Button in der Tabelle – der öffnet direkt den Blueprint-Import-Dialog in Home Assistant.
 
-> Der Import-Badge verweist aktuell auf den Branch `claude/homeassistant-blueprint-install-phycpv`, da dein Repo noch keinen `main`-Branch hat. Sobald dieser Branch in `main` gemergt wird, sollte die `blueprint_url` im Badge-Link (und die URL unten bei Methode 2) entsprechend auf `main` aktualisiert werden.
+Falls der Button nicht funktioniert (z. B. weil der Link noch auf einen alten Branch zeigt) oder du lieber manuell vorgehst:
 
----
+- **Per URL:** In Home Assistant unter *Einstellungen → Automatisierungen & Szenen → Blueprints → Blueprint importieren* die Rohdaten-URL der gewünschten Datei einfügen, z. B.
+  `https://raw.githubusercontent.com/TBierstedt/HomeAssistant/claude/homeassistant-blueprint-install-phycpv/blueprints/automation/shelly-button1-4-click-actions/shelly-button1-4-click-actions.yaml`
+- **Per Datei:** Die `.yaml`-Datei direkt nach `<config>/blueprints/automation/` kopieren und Home Assistant neu starten bzw. die Automatisierungen neu laden.
 
-## 🚀 Installation
+Danach taucht die Blueprint unter *Einstellungen → Automatisierungen & Szenen → Blueprints* auf und kann als neue Automatisierung angelegt werden.
 
-### Methode 1: One-Click-Import (empfohlen)
+## Voraussetzungen
 
-1. Auf den Import-Badge der gewünschten Blueprint klicken
-2. Deine Home Assistant Instanz öffnet sich mit vorausgefüllter Blueprint
-3. Auf "Blueprint importieren" klicken
-4. Automatisierung aus der Blueprint anlegen
-
-### Methode 2: Manueller Import per URL
-
-1. Rohdaten-URL der Blueprint kopieren, z. B.:
-   ```
-   https://raw.githubusercontent.com/TBierstedt/HomeAssistant/claude/homeassistant-blueprint-install-phycpv/blueprints/automation/shelly-button1-4-click-actions/shelly-button1-4-click-actions.yaml
-   ```
-2. In Home Assistant: **Einstellungen** → **Automatisierungen & Szenen** → **Blueprints** → **Blueprint importieren**
-3. URL einfügen und auf "Importieren" klicken
-
-### Methode 3: Lokale Installation
-
-1. Die Blueprint-Datei nach `<config>/blueprints/automation/` kopieren
-2. Home Assistant neu starten oder Automatisierungen neu laden
-3. Die Blueprint erscheint in der Blueprint-Übersicht
-
-## 🛠️ Voraussetzungen
-
-- Home Assistant mit aktivierter Blueprint-Unterstützung (Standard in aktuellen Versionen)
-- Für die Shelly-Blueprint: ein Shelly Button 1 (Gen1, WiFi) als eingebundenes Gerät
+- Aktuelle Home-Assistant-Version mit Blueprint-Unterstützung (Standard)
+- Für die Shelly-Blueprint zusätzlich: ein per Shelly-Integration eingebundener Shelly Button 1 (Gen1, WiFi)
