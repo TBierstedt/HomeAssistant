@@ -1,0 +1,13 @@
+# Home Assistant secrets & runtime state - never commit these
+secrets.yaml
+.storage/
+.cloud/
+.HA_VERSION
+home-assistant.log
+home-assistant.log.*
+*.db
+*.db-shm
+*.db-wal
+tts/
+deps/
+__pycache__/
