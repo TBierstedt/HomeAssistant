@@ -7,6 +7,7 @@ Hier sammle ich Blueprints für meine eigene Home-Assistant-Instanz. Jede Bluepr
 | Blueprint | Wofür | Import |
 |---|---|---|
 | [Shelly Button1 – 4 Klick-Aktionen](blueprints/automation/shelly-button1-4-click-actions/shelly-button1-4-click-actions.yaml) | Löst je nach Klick-Art (einfach / doppelt / dreifach / lang) eines Shelly Button 1 (Gen1, WiFi) eine frei konfigurierbare Aktions-Sequenz aus | [![Import in Home Assistant](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fraw.githubusercontent.com%2FTBierstedt%2FHomeAssistant%2Fmain%2Fblueprints%2Fautomation%2Fshelly-button1-4-click-actions%2Fshelly-button1-4-click-actions.yaml) |
+| [Shelly Plus I4 – 4 Tasten-Aktionen](blueprints/automation/shelly-i4-4-buttons-actions/shelly-i4-4-buttons-actions.yaml) | Löst je Eingang (1–4) und Ereignis-Art (runter / hoch / einfach / doppelt / dreifach / lang) eines Shelly Plus I4 (Gen2) eine frei konfigurierbare Aktions-Sequenz aus | [![Import in Home Assistant](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fraw.githubusercontent.com%2FTBierstedt%2FHomeAssistant%2Fmain%2Fblueprints%2Fautomation%2Fshelly-i4-4-buttons-actions%2Fshelly-i4-4-buttons-actions.yaml) |
 
 ## Installation
 
@@ -23,7 +24,8 @@ Danach taucht die Blueprint unter *Einstellungen → Automatisierungen & Szenen 
 ## Voraussetzungen
 
 - Aktuelle Home-Assistant-Version mit Blueprint-Unterstützung (Standard)
-- Für die Shelly-Blueprint zusätzlich: ein per Shelly-Integration eingebundener Shelly Button 1 (Gen1, WiFi)
+- Shelly Button1 4-Klick-Aktionen: ein per Shelly-Integration eingebundener Shelly Button 1 (Gen1, WiFi)
+- Shelly Plus I4 4-Tasten-Aktionen: ein per Shelly-Integration eingebundener Shelly Plus I4 (Gen2)
 
 ## Lizenz
 
