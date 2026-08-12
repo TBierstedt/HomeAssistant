@@ -1,0 +1,429 @@
+blueprint:
+  name: Shelly Plus I4 – 4 Tasten-Aktionen
+  description: >
+    Reagiert auf 6 Ereignis-Arten (Taste runter, Taste hoch, einfach, doppelt,
+    dreifach, lang) an jedem der 4 Eingänge eines Shelly Plus I4 (Gen2, RPC)
+    und führt je Eingang und Ereignis-Art eine frei wählbare Aktions-Sequenz
+    aus. Basiert auf der Community-Blueprint
+    community.home-assistant.io/t/shelly-i4-4-buttons-actions/514527,
+    mit korrigiertem Geräte-Filter (siehe Hinweis unten).
+  domain: automation
+  input:
+    button:
+      name: Shelly Plus I4 Gerät
+      description: >
+        Das Shelly Plus I4 Gerät, dessen 4 Eingänge ausgewertet werden sollen.
+
+        Hinweis: Die ursprüngliche Community-Blueprint filterte per
+        model: SNSN-0024X – das ist die Hersteller-SKU, nicht der Wert, den
+        Home Assistant im Geräteregister als "model" führt (dort steht
+        "Shelly Plus I4"). Dadurch tauchte das Gerät in der Auswahl nicht auf.
+        Dieser Filter nutzt stattdessen integration + model wie im
+        Geräteregister hinterlegt.
+      selector:
+        device:
+          filter:
+            - integration: shelly
+              model: Shelly Plus I4
+    downb1:
+      name: Down Button 1
+      description: Action to run when SHORT press
+      default: []
+      selector:
+        action: {}
+    upb1:
+      name: up Button 1
+      description: Action to run when SHORT press
+      default: []
+      selector:
+        action: {}
+    singleb1:
+      name: single short press Button 1
+      description: Action to run when SHORT press
+      default: []
+      selector:
+        action: {}
+    doubleb1:
+      name: double short press Button 1
+      description: Action to run when DOUBLE SHORT press
+      default: []
+      selector:
+        action: {}
+    tripleb1:
+      name: triple short press Button 1
+      description: Action to run when TRIPLE SHORT press
+      default: []
+      selector:
+        action: {}
+    longb1:
+      name: long press Button 1
+      description: Action to run when LONG press
+      default: []
+      selector:
+        action: {}
+        
+    downb2:
+      name: Down Button 2
+      description: Action to run when SHORT press
+      default: []
+      selector:
+        action: {}
+    upb2:
+      name: up Button 2
+      description: Action to run when SHORT press
+      default: []
+      selector:
+        action: {}
+    singleb2:
+      name: single short press Button 2
+      description: Action to run when SHORT press
+      default: []
+      selector:
+        action: {}
+    doubleb2:
+      name: double short press Button 2
+      description: Action to run when DOUBLE SHORT press
+      default: []
+      selector:
+        action: {}
+    tripleb2:
+      name: triple short press Button 2
+      description: Action to run when TRIPLE SHORT press
+      default: []
+      selector:
+        action: {}
+    longb2:
+      name: long press Button 2
+      description: Action to run when LONG press
+      default: []
+      selector:
+        action: {}
+        
+    downb3:
+      name: Down Button 3
+      description: Action to run when SHORT press
+      default: []
+      selector:
+        action: {}
+    upb3:
+      name: up Button 3
+      description: Action to run when SHORT press
+      default: []
+      selector:
+        action: {}
+    singleb3:
+      name: single short press Button 3
+      description: Action to run when SHORT press
+      default: []
+      selector:
+        action: {}
+    doubleb3:
+      name: double short press Button 3
+      description: Action to run when DOUBLE SHORT press
+      default: []
+      selector:
+        action: {}
+    tripleb3:
+      name: triple short press Button 3
+      description: Action to run when TRIPLE SHORT press
+      default: []
+      selector:
+        action: {}
+    longb3:
+      name: long press Button 3
+      description: Action to run when LONG press
+      default: []
+      selector:
+        action: {}
+        
+    downb4:
+      name: Down Button 4
+      description: Action to run when SHORT press
+      default: []
+      selector:
+        action: {}
+    upb4:
+      name: up Button 4
+      description: Action to run when SHORT press
+      default: []
+      selector:
+        action: {}
+    singleb4:
+      name: single short press Button 4
+      description: Action to run when SHORT press
+      default: []
+      selector:
+        action: {}
+    doubleb4:
+      name: double short press Button 4
+      description: Action to run when DOUBLE SHORT press
+      default: []
+      selector:
+        action: {}
+    tripleb4:
+      name: triple short press Button 4
+      description: Action to run when TRIPLE SHORT press
+      default: []
+      selector:
+        action: {}
+    longb4:
+      name: long press Button 4
+      description: Action to run when LONG press
+      default: []
+      selector:
+        action: {}
+  source_url: https://community.home-assistant.io/t/shelly-i4-4-buttons-actions/514527
+mode: restart
+max_exceeded: silent
+triggers:
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: btn_down
+  subtype: button1
+  id: btn1_down
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: btn_up
+  subtype: button1
+  id: btn1_up
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: single_push
+  subtype: button1
+  id: btn1_single
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: double_push
+  subtype: button1
+  id: btn1_double
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: triple_push
+  subtype: button1
+  id: btn1_triple
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: long_push
+  subtype: button1
+  id: btn1_long
+  
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: btn_down
+  subtype: button2
+  id: btn2_down
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: btn_up
+  subtype: button2
+  id: btn2_up
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: single_push
+  subtype: button2
+  id: btn2_single
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: double_push
+  subtype: button2
+  id: btn2_double
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: triple_push
+  subtype: button2
+  id: btn2_triple
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: long_push
+  subtype: button2
+  id: btn2_long
+  
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: btn_down
+  subtype: button3
+  id: btn3_down
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: btn_up
+  subtype: button3
+  id: btn3_up
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: single_push
+  subtype: button3
+  id: btn3_single
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: double_push
+  subtype: button3
+  id: btn3_double
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: triple_push
+  subtype: button3
+  id: btn3_triple
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: long_push
+  subtype: button3
+  id: btn3_long
+  
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: btn_down
+  subtype: button4
+  id: btn4_down
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: btn_up
+  subtype: button4
+  id: btn4_up
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: single_push
+  subtype: button4
+  id: btn4_single
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: double_push
+  subtype: button4
+  id: btn4_double
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: triple_push
+  subtype: button4
+  id: btn4_triple
+- platform: device
+  device_id: !input button
+  domain: shelly
+  type: long_push
+  subtype: button4
+  id: btn4_long
+actions:
+- choose:
+  - conditions:
+    - condition: trigger
+      id: btn1_down
+    sequence: !input downb1
+  - conditions:
+    - condition: trigger
+      id: btn1_up
+    sequence: !input upb1
+  - conditions:
+    - condition: trigger
+      id: btn1_single
+    sequence: !input singleb1
+  - conditions:
+    - condition: trigger
+      id: btn1_double
+    sequence: !input doubleb1
+  - conditions:
+    - condition: trigger
+      id: btn1_triple
+    sequence: !input tripleb1
+  - conditions:
+    - condition: trigger
+      id: btn1_long
+    sequence: !input longb1
+
+
+  - conditions:
+    - condition: trigger
+      id: btn2_down
+    sequence: !input downb2
+  - conditions:
+    - condition: trigger
+      id: btn2_up
+    sequence: !input upb2
+  - conditions:
+    - condition: trigger
+      id: btn2_single
+    sequence: !input singleb2
+  - conditions:
+    - condition: trigger
+      id: btn2_double
+    sequence: !input doubleb2
+  - conditions:
+    - condition: trigger
+      id: btn2_triple
+    sequence: !input tripleb2
+  - conditions:
+    - condition: trigger
+      id: btn2_long
+    sequence: !input longb2
+
+
+  - conditions:  
+    - condition: trigger
+      id: btn3_down
+    sequence: !input downb3
+  - conditions:
+    - condition: trigger
+      id: btn3_up
+    sequence: !input upb3
+  - conditions:
+    - condition: trigger
+      id: btn3_single
+    sequence: !input singleb3
+  - conditions:
+    - condition: trigger
+      id: btn3_double
+    sequence: !input doubleb3
+  - conditions:
+    - condition: trigger
+      id: btn3_triple
+    sequence: !input tripleb3
+  - conditions:
+    - condition: trigger
+      id: btn3_long
+    sequence: !input longb3
+
+
+  - conditions:
+    - condition: trigger
+      id: btn4_down
+    sequence: !input downb4
+  - conditions:
+    - condition: trigger
+      id: btn4_up
+    sequence: !input upb4
+  - conditions:
+    - condition: trigger
+      id: btn4_single
+    sequence: !input singleb4
+  - conditions:
+    - condition: trigger
+      id: btn4_double
+    sequence: !input doubleb4
+  - conditions:
+    - condition: trigger
+      id: btn4_triple
+    sequence: !input tripleb4
+  - conditions:
+    - condition: trigger
+      id: btn4_long
+    sequence: !input longb4
