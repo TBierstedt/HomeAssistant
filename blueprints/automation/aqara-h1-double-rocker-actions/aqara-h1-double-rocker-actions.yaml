@@ -20,6 +20,8 @@ blueprint:
         device:
           filter:
             - integration: mqtt
+              manufacturer: Aqara
+              model: Wireless remote switch H1 (double rocker)
     single_left_actions:
       name: Einfacher Klick links
       description: Wird bei einem einzelnen kurzen Klick der linken Taste ausgeführt.
