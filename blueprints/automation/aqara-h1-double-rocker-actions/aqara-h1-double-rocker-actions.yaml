@@ -28,33 +28,9 @@ blueprint:
       default: []
       selector:
         action: {}
-    single_right_actions:
-      name: Einfacher Klick rechts
-      description: Wird bei einem einzelnen kurzen Klick der rechten Taste ausgeführt.
-      default: []
-      selector:
-        action: {}
-    single_both_actions:
-      name: Einfacher Klick beide Tasten
-      description: Wird bei einem einzelnen kurzen Klick beider Tasten gleichzeitig ausgeführt.
-      default: []
-      selector:
-        action: {}
     double_left_actions:
       name: Doppelklick links
       description: Wird bei zwei kurzen Klicks der linken Taste hintereinander ausgeführt.
-      default: []
-      selector:
-        action: {}
-    double_right_actions:
-      name: Doppelklick rechts
-      description: Wird bei zwei kurzen Klicks der rechten Taste hintereinander ausgeführt.
-      default: []
-      selector:
-        action: {}
-    double_both_actions:
-      name: Doppelklick beide Tasten
-      description: Wird bei zwei kurzen Klicks beider Tasten gleichzeitig ausgeführt.
       default: []
       selector:
         action: {}
@@ -64,27 +40,51 @@ blueprint:
       default: []
       selector:
         action: {}
-    triple_right_actions:
-      name: Dreifachklick rechts
-      description: Wird bei drei kurzen Klicks der rechten Taste hintereinander ausgeführt.
-      default: []
-      selector:
-        action: {}
-    triple_both_actions:
-      name: Dreifachklick beide Tasten
-      description: Wird bei drei kurzen Klicks beider Tasten gleichzeitig ausgeführt.
-      default: []
-      selector:
-        action: {}
     hold_left_actions:
       name: Halten links
       description: Wird beim gedrückt Halten der linken Taste ausgeführt.
       default: []
       selector:
         action: {}
+    single_right_actions:
+      name: Einfacher Klick rechts
+      description: Wird bei einem einzelnen kurzen Klick der rechten Taste ausgeführt.
+      default: []
+      selector:
+        action: {}
+    double_right_actions:
+      name: Doppelklick rechts
+      description: Wird bei zwei kurzen Klicks der rechten Taste hintereinander ausgeführt.
+      default: []
+      selector:
+        action: {}
+    triple_right_actions:
+      name: Dreifachklick rechts
+      description: Wird bei drei kurzen Klicks der rechten Taste hintereinander ausgeführt.
+      default: []
+      selector:
+        action: {}
     hold_right_actions:
       name: Halten rechts
       description: Wird beim gedrückt Halten der rechten Taste ausgeführt.
+      default: []
+      selector:
+        action: {}
+    single_both_actions:
+      name: Einfacher Klick beide Tasten
+      description: Wird bei einem einzelnen kurzen Klick beider Tasten gleichzeitig ausgeführt.
+      default: []
+      selector:
+        action: {}
+    double_both_actions:
+      name: Doppelklick beide Tasten
+      description: Wird bei zwei kurzen Klicks beider Tasten gleichzeitig ausgeführt.
+      default: []
+      selector:
+        action: {}
+    triple_both_actions:
+      name: Dreifachklick beide Tasten
+      description: Wird bei drei kurzen Klicks beider Tasten gleichzeitig ausgeführt.
       default: []
       selector:
         action: {}
@@ -108,32 +108,8 @@ triggers:
     device_id: !input remote_device
     domain: mqtt
     type: action
-    subtype: single_right
-    id: single_right
-  - trigger: device
-    device_id: !input remote_device
-    domain: mqtt
-    type: action
-    subtype: single_both
-    id: single_both
-  - trigger: device
-    device_id: !input remote_device
-    domain: mqtt
-    type: action
     subtype: double_left
     id: double_left
-  - trigger: device
-    device_id: !input remote_device
-    domain: mqtt
-    type: action
-    subtype: double_right
-    id: double_right
-  - trigger: device
-    device_id: !input remote_device
-    domain: mqtt
-    type: action
-    subtype: double_both
-    id: double_both
   - trigger: device
     device_id: !input remote_device
     domain: mqtt
@@ -144,26 +120,50 @@ triggers:
     device_id: !input remote_device
     domain: mqtt
     type: action
-    subtype: triple_right
-    id: triple_right
-  - trigger: device
-    device_id: !input remote_device
-    domain: mqtt
-    type: action
-    subtype: triple_both
-    id: triple_both
-  - trigger: device
-    device_id: !input remote_device
-    domain: mqtt
-    type: action
     subtype: hold_left
     id: hold_left
   - trigger: device
     device_id: !input remote_device
     domain: mqtt
     type: action
+    subtype: single_right
+    id: single_right
+  - trigger: device
+    device_id: !input remote_device
+    domain: mqtt
+    type: action
+    subtype: double_right
+    id: double_right
+  - trigger: device
+    device_id: !input remote_device
+    domain: mqtt
+    type: action
+    subtype: triple_right
+    id: triple_right
+  - trigger: device
+    device_id: !input remote_device
+    domain: mqtt
+    type: action
     subtype: hold_right
     id: hold_right
+  - trigger: device
+    device_id: !input remote_device
+    domain: mqtt
+    type: action
+    subtype: single_both
+    id: single_both
+  - trigger: device
+    device_id: !input remote_device
+    domain: mqtt
+    type: action
+    subtype: double_both
+    id: double_both
+  - trigger: device
+    device_id: !input remote_device
+    domain: mqtt
+    type: action
+    subtype: triple_both
+    id: triple_both
   - trigger: device
     device_id: !input remote_device
     domain: mqtt
@@ -179,56 +179,56 @@ actions:
           - condition: trigger
             id: single_left
         sequence: !input single_left_actions
-      - alias: "Einfacher Klick rechts (single_right)"
-        conditions:
-          - condition: trigger
-            id: single_right
-        sequence: !input single_right_actions
-      - alias: "Einfacher Klick beide Tasten (single_both)"
-        conditions:
-          - condition: trigger
-            id: single_both
-        sequence: !input single_both_actions
       - alias: "Doppelklick links (double_left)"
         conditions:
           - condition: trigger
             id: double_left
         sequence: !input double_left_actions
-      - alias: "Doppelklick rechts (double_right)"
-        conditions:
-          - condition: trigger
-            id: double_right
-        sequence: !input double_right_actions
-      - alias: "Doppelklick beide Tasten (double_both)"
-        conditions:
-          - condition: trigger
-            id: double_both
-        sequence: !input double_both_actions
       - alias: "Dreifachklick links (triple_left)"
         conditions:
           - condition: trigger
             id: triple_left
         sequence: !input triple_left_actions
-      - alias: "Dreifachklick rechts (triple_right)"
-        conditions:
-          - condition: trigger
-            id: triple_right
-        sequence: !input triple_right_actions
-      - alias: "Dreifachklick beide Tasten (triple_both)"
-        conditions:
-          - condition: trigger
-            id: triple_both
-        sequence: !input triple_both_actions
       - alias: "Halten links (hold_left)"
         conditions:
           - condition: trigger
             id: hold_left
         sequence: !input hold_left_actions
+      - alias: "Einfacher Klick rechts (single_right)"
+        conditions:
+          - condition: trigger
+            id: single_right
+        sequence: !input single_right_actions
+      - alias: "Doppelklick rechts (double_right)"
+        conditions:
+          - condition: trigger
+            id: double_right
+        sequence: !input double_right_actions
+      - alias: "Dreifachklick rechts (triple_right)"
+        conditions:
+          - condition: trigger
+            id: triple_right
+        sequence: !input triple_right_actions
       - alias: "Halten rechts (hold_right)"
         conditions:
           - condition: trigger
             id: hold_right
         sequence: !input hold_right_actions
+      - alias: "Einfacher Klick beide Tasten (single_both)"
+        conditions:
+          - condition: trigger
+            id: single_both
+        sequence: !input single_both_actions
+      - alias: "Doppelklick beide Tasten (double_both)"
+        conditions:
+          - condition: trigger
+            id: double_both
+        sequence: !input double_both_actions
+      - alias: "Dreifachklick beide Tasten (triple_both)"
+        conditions:
+          - condition: trigger
+            id: triple_both
+        sequence: !input triple_both_actions
       - alias: "Halten beide Tasten (hold_both)"
         conditions:
           - condition: trigger
